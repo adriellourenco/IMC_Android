@@ -7,35 +7,53 @@ import android.widget.EditText
 import android.widget.TextView
 import java.text.DecimalFormat
 
+private lateinit var weightEditText: EditText
+private lateinit var heightEditText: EditText
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val calcular = findViewById<Button>(R.id.ButtonCalcular)
-        val decimalFormat = DecimalFormat("#.##")
 
         calcular.setOnClickListener(){
-            val weight = findViewById<EditText>(R.id.weight).text.toString().toDouble()
-            val height = findViewById<EditText>(R.id.height).text.toString().toDouble()
-            val imc = weight / (height*height)
-            val resultado = findViewById<TextView>(R.id.results)
 
-            if(imc < 18.5){
-                resultado.text = "Seu IMC é " +decimalFormat.format(imc) +"," +" e você está abaixo do peso!"
-            }else if(imc < 25){
-                resultado.text = "Seu IMC é " +decimalFormat.format(imc) +"," + " e você está com o peso ideal! Parabéns!"
-            }else if(imc < 30){
-                resultado.text = "Seu IMC é " +decimalFormat.format(imc) +"," + " e você está levemente acima do peso!"
-            }else if(imc < 35){
-                resultado.text = "Seu IMC é " +decimalFormat.format(imc) +"," +" e você está com obesidade grau I!"
-            }else if(imc < 40){
-                resultado.text = "Seu IMC é " +decimalFormat.format(imc) +"," +" e você está com obesidade grau II!"
-            }else{
-                resultado.text = "Seu IMC é " +decimalFormat.format(imc) +"," +" e você está com obesidade grau III! Cuidado!"
+            weightEditText = findViewById(R.id.weight)
+            heightEditText = findViewById(R.id.height)
+
+            if (validarCampos()){
+
+                val weight = weightEditText.text.toString().toDouble()
+                val height = heightEditText.text.toString().toDouble()
+                //val imc = weight / (height*height)
+                val resultado = findViewById<TextView>(R.id.results)
+
+                val imc = calcularImc(weight, height)
+
+                resultado.text = classificarImc(imc)
+
             }
-
 
         }
     }
+
+    fun validarCampos(): Boolean {
+
+        var noError = true;
+
+        if (weightEditText.text.isBlank()) {
+            weightEditText.setError("Digite a Nota 1")
+            noError = false
+        }
+        if (heightEditText.text.isBlank()){
+            heightEditText.setError("Digite a Nota 2")
+            noError = false
+        }
+
+        return noError;
+
+    }
 }
+
+
