@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".resultadoActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resultados"
+        android:textSize="38sp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/cardview_dark_background"
+        />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/imc"
+            android:text="IMC:"
+            style="@style/label" />
+
+        <TextView
+            android:id="@+id/resultadoImc"
+            style="@style/campos" />
+
+        <TextView
+            android:id="@+id/estado"
+            android:text="Estado:"
+            style="@style/label" />
+
+        <TextView
+            android:id="@+id/resultadoEstado"
+            style="@style/campos" />
+
+    </LinearLayout>
+</LinearLayout>

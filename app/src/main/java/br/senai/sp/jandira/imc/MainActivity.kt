@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.imc
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -32,6 +33,12 @@ class MainActivity : AppCompatActivity() {
                 val imc = calcularImc(weight, height)
 
                 resultado.text = classificarImc(imc)
+
+                val intent : Intent = Intent(this, resultadoActivity:: class.java)
+                intent.putExtra("imc", imc.toString())
+                intent.putExtra("estado", resultado.text.toString())
+                startActivity(intent)
+
 
             }
 
